@@ -1,0 +1,6 @@
+compilation/cpp/input.cpp:1:7: warning: character constant too long for its type
+    1 | print('hello word')
+      |       ^~~~~~~~~~~~
+compilation/cpp/input.cpp:1:6: error: expected constructor, destructor, or type conversion before ‘(’ token
+    1 | print('hello word')
+      |      ^

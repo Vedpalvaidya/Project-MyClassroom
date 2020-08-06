@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/assignments.css' %}">
+</head>
+<body>
+    <h1>This is assignments page</h1>
+    <br>
+    <br>
+    <div>
+         <label>Name :</label>{{user.username}} <br>
+         <label>Gr no :</label><br>
+         <label>Batch :</label><br>
+         <label>Roll no :</label><br>
+    </div>
+    <br>
+    <h3>Assignments</h3>
+    <table>
+        <tr>
+        	<th>No</th>
+        	<th>Assignment</th>
+        	<th>Upload</th>
+        	<th>Status</th>
+        </tr>
+        
+        <tr>
+            <td>1</td>    	
+            <td>Assignment 1</td>  
+            <td>   	
+			    <form action='upload' method="POST" enctype="multipart/form-data">
+			        {% csrf_token %}
+			        <input type="file" name="document">
+			        <input type="submit">
+			    </form>
+			<td>   
+	    </tr>
+    </table>
+    {% if url %}
+    Uploaded file : <a href= "{{url}}">{{url}}</a>
+    {% endif %}
+</body>
+</html>

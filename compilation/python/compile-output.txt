@@ -1,0 +1,4 @@
+  File "compilation/python/input.py", line 3
+    int main()
+        ^
+SyntaxError: invalid syntax
