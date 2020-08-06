@@ -1,3 +1,6 @@
-#Project WEB
+MyClassroom is made using Django.
 
-This is webapp wriitten in django.
+MyClassroom can be used where teachers can create assignments and students can submit it. We here keep track of assignment submissions, save the submission files. Here it also inform students about assignments through email automatically.
+
+Also, it has feature so, that students can run (c, c++, java, python) code on it and teacher can check code by running it.
+
