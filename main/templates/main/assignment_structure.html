@@ -1,0 +1,99 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Student Page</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel="stylesheet" href="{% static 'css/all.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/assignment_structure.css' %}">
+	<link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+	<nav class="navbar navbar-expand-md navbar-light bg-light">
+		<div class="container-fluid">
+		  <a class="navbar-brand" href="#">My Classroom</a>
+		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		    <span class="navbar-toggler-icon"></span>
+		  </button>
+
+		  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+		    <ul class="navbar-nav mr-auto">
+		      <li>
+                <a class="nav-link" href="teacher">back to assignment</a>
+            </li>
+		    </ul>
+		    <ul class="navbar-nav navbar-right">
+		        <li><a href="logout" class="nav-link">Log out</a></li> 
+		    </ul>       
+		  </div>
+		</div>	
+</nav>
+	<section>
+		<hr>
+		<h1>Assignments</h1>
+		{% if mesg %}
+		<br>
+		<h1>Assignment {{assn_num}} {{mesg}}</h1>
+		{% elif error_mesg %}
+		<br>
+		<h3>{{error_mesg}}</h3>
+		{% endif %}
+		<hr>
+	</section>
+<div >	
+</div>
+
+<form action="assignment_structure" method="POST">
+	{% csrf_token%}
+    <div class="container">
+    	<table>
+    		<tr>
+    			<td colspan="4">
+		            <label>Assignment No: </label>
+		            <input class="form-control" type="text" name ="no">
+		        </td>
+		    <tr>    
+	        
+            <tr>
+            	<td colspan="4">
+		            <label>Aim/Objective: </label>
+		            <input class="form-control" type="text" name="name">
+		        </td>
+		    </tr>    
+	        
+	        <tr>
+	        	<td colspan="4">
+			        <div class="form-group">
+			            <div class="divbg"><label for="exampleFormControlTextarea1">Assignment Description:</label></div>
+			            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="description"></textarea>
+			        </div>
+		        </td>
+		    </tr>   
+	     
+	        <tr>
+	        	<td colspan="2">
+			        <div class="form-group row">
+			            <label for="example-datetime-local-input" class="col-2 col-form-label">Due Date</label>
+			            <div class="col-10">
+			              <input id="date" name="due_date" class="form-control" type="date" value="2020-08-19" id="example-datetime-local-input">
+			            </div>
+			        </div>
+		        </td>
+                <td colspan="2">
+			        <label>Created by: </label>
+			        <input class="form-control" name="author" type="text">
+		        </td>
+		     </tr>   
+	    </table>
+       
+    </div>
+    <button id="button" class="btn btn-md btn-primary">Create</button>
+</form>
+
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

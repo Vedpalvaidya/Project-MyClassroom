@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editor</title>
+</head>
+<body>
+    <h1> Editor </h1>
+    <br>
+
+         
+        <textarea id="editor" cols="100" rows="20"></textarea>
+        <br>
+        <span>Input: <input id="reset" type="button" value="Reset"></span>
+        <br>
+        <textarea id="input" cols="100" rows="4"></textarea>
+        <br>
+         <input id="code-submit" type="button" value="send" >
+         <br>
+         Output:
+         <br>
+         <textarea id="output" cols="100" rows="20"></textarea>
+    
+
+    <script>
+   
+        const cSocket = new WebSocket(
+            'ws://'
+            + window.location.host
+            + '/ws/compilation/'
+            +'cCompiler'
+            +'/'
+        );
+        
+        cSocket.onmessage = function(e) {
+            const data = JSON.parse(e.data);
+           document.querySelector('#output').value = data.code;
+        };
+
+        cSocket.onclose = function(e) {
+            console.error('Chat socket closed unexpectedly');
+        };
+
+        document.querySelector('#code-submit').addEventListener('click', function(){
+            const editor_data= document.querySelector('#editor');
+            const input_data = document.querySelector('#input').value;
+            
+            const code  = editor_data.value;
+
+            console.log(code);
+
+            cSocket.send(JSON.stringify({
+                'code' : code,
+                'input' : input_data,
+                'language' : "python"
+            }));
+
+        });
+
+
+        
+    </script>
+
+    <input type="file" name="inputfile"
+			id="inputfile"> 
+    <br> 
+    
+
+    <script>
+        var jsonObject = JSON.parse('{{ file_path | escapejs }}');
+       var file =  document.querySelector('#editor');
+       file.value =  jsonObject;
+       
+    </script>
+
+	<pre id="output"></pre> 
+	
+	<script type="text/javascript"> 
+		document.getElementById('inputfile') 
+			.addEventListener('change', function() { 
+			
+			var fr=new FileReader(); 
+			fr.onload=function(){ 
+				document.getElementById('editor') 
+						.textContent=fr.result; 
+			} 
+			
+            fr.readAsText(this.files[0]); 
+            console.log(this.files[0]);
+		}) 
+	</script> 
+
+</body>
+</html>

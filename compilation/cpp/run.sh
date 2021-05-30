@@ -1,0 +1,1 @@
+./compilation/cpp/a.out < compilation/cpp/input.txt > compilation/cpp/output.txt

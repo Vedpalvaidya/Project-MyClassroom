@@ -1,0 +1,123 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Student Page</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel="stylesheet" href="{% static 'css/all.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/student.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        label{
+            font-weight: bold;
+        }
+
+        #l1{
+            margin-top: 20px;
+        }
+
+        form{
+            display: inline;
+            margin-right: 100px;
+        }
+
+        #code-editor{
+            margin-left:  100px;
+            display: inline;
+        }
+
+        #div1{
+            margin-left:20px;
+        }
+
+        #div2{
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+	<nav class="navbar navbar-expand-md navbar-light bg-light">
+		<div class="container-fluid">
+		  <a class="navbar-brand" href="#">My Classroom</a>
+		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		    <span class="navbar-toggler-icon"></span>
+		  </button>
+
+		  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+		    <ul class="navbar-nav mr-auto">
+		      <li>
+				<a class="nav-link" href="#">Home</a>
+			</li>
+			<li>
+				<a class="nav-link" href="/compilation/editor">Code</a>
+			</li>
+		    </ul>
+		    <ul class="navbar-nav navbar-right">
+		        <li><a href="/logout" class="nav-link">Log out</a></li> 
+		    </ul>       
+		  </div>
+		</div>	
+</nav>
+	<section>
+		<hr>
+		<h1>Submit Page</h1>
+		{% if mesg %}
+		<br>
+		<h1>Assignment {{assn_num}} {{mesg}}</h1>
+		{% elif error_mesg %}
+		<br>
+		<h3>{{error_mesg}}</h3>
+		{% endif %}
+		<hr>
+	</section>
+<div >
+	
+</div>
+
+<div class="container" id="box">
+	<div id="about">
+		<h3><i class="fas fa-user"></i> ABOUT</h3>
+		<div class="row">
+			<div class="col-4">
+				<small><b>First Name:</b> {{user.first_name}} {{user.last_name}}</small><br>
+				<small><b>Email:</b> {{user.email}}</small><br>
+				<small><b>Division:</b> Comp A</small>
+			</div>
+			<div class="col-4">
+				<small><b>Gr no:</b> {{user.username}}</small><br>
+				<small><b>Class:</b> SY B.TECH</small><br>
+				<small><b>Batch</b>: A2</small>
+			</div>
+	    </div>
+	</div>
+<hr style="width: 98%">
+  
+
+<div id="div1">
+    <label id="l1"> Aim : </label> {{assignment.assn_name}}
+    <br>
+    <label>Description : </label> {{assignment.assn_description}}
+    <br>
+    <label>Due Date : </label> {{assignment.due_date}}
+    <br>
+    <label>Created by : </label> {{assignment.author}}
+
+    <br>
+    <div id="div2">
+        <form action="/main/upload/{{assignment.assn_no}}" enctype="multipart/form-data" method="POST">
+            {% csrf_token %}
+            <input  type="file" id="myfile" name="myfile1" multiple>
+            <input class="btn  btn-primary" type="submit">
+        </form>    Or
+                        <a id="code-editor" class="btn btn-success" href="/compilation/editor/{{assignment.assn_no}}">Code here</a>
+    </div>
+
+    <hr>
+</div>
+</div>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

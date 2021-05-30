@@ -1,0 +1,34 @@
+body{
+	background: url("../images/home_bg.jpg");
+	background-size: cover;
+	background-position: center;
+	color: black;
+	font-family: Lora;
+	/*background: transparent;*/
+}
+
+
+#box{
+	text-align: center;
+	padding-top: 20%;
+}
+
+html
+{
+	height: 100%;
+}
+h1{
+	font-weight: 700;
+	font-size: 4rem;
+}
+
+hr{
+	width: 70%;
+	border-top: 1px solid #f8f8f8;
+	border-bottom: 1px solid rgba(0,0,0,0.2);
+}
+/*
+#button:hover
+{
+	background-color: orange;
+}*/

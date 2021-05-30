@@ -1,0 +1,107 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login Page</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel="stylesheet" href="{% static 'css/all.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
+	<link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap" rel="stylesheet">
+	<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <style>
+	    #error{
+			color: blue;
+		}
+
+		.navbar{
+            margin-bottom: 20px;
+		}
+		.username:focus{
+			background: red;
+		}
+	</style>
+</head>
+<body>
+<nav class="navbar navbar-expand-md navbar-light bg-light">
+		<div class="container-fluid">
+		  <a class="navbar-brand" href="#">My Classroom</a>
+		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		    <span class="navbar-toggler-icon"></span>
+		  </button>
+
+		  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+		    <ul class="navbar-nav mr-auto ">
+		      <li>
+                <a class="nav-link" href="/main">Home</a>
+            </li>
+			</ul>
+			{% if mesg %}
+			<ul class="navbar-nav mr-auto navbar-center">
+				<li>
+				  <a id="error" class="nav-link" href="#">{{mesg}}</a>
+				</li>
+			</ul>
+			{% endif %}
+		    <ul class="navbar-nav navbar-right">
+		    	<!-- <li><a href="#" class="nav-link">Sign up</a></li> -->
+		        <li class="nav-tabs"><a href="#" class="nav-link mr-auto active">Login</a></li> 
+		    </ul>       
+		  </div>
+		</div>	
+</nav>
+<div class="container">
+	<form action="login" method="POST">
+	{% csrf_token %}
+	  <h4>Login</h4>
+	  <div class="form-group">
+	  	<p>Email address</p>
+	  	<div class="row">
+	  		<div class="col-1">
+	  			<span class="icon"><i class="fas fa-user"></i></span>    
+	  		</div>
+	  		<div class="col">
+				  <input class="username" type="text" id="exampleInputEmail1" placeholder="Enter email" name="username"
+				  style="margin: 0;
+				  border:none;
+				  background: transparent;
+				  outline: none;
+				  color: #fff;
+				  width: 100%;">
+	  		</div>
+	  	</div>
+	  	<hr class="hr">
+	  </div>
+	  <div class="form-group">
+	    <p>Password</p>
+	    <div class="row">
+	    	<div class="col-1">
+	    		<i class="fas fa-lock"></i>
+	    	</div>
+	    	<div class="col">
+	    		<input type="password" id="exampleInputPassword1" placeholder="Password" name="password">
+	    	</div>
+	    </div>
+	    <hr class="hr">
+	  </div>
+	  <div class="text-right">
+	  	<a href="#" style="color: white">Forgot Password?</a>
+	  </div>	
+	  <button type="submit" class="btn btn-primary btn-block">Log in</button>
+	</form>
+	<hr id="line">
+	<button class="btn btn-google btn-block btn-primary" type="submit"><i class="fab fa-google"></i>  Sign in with Google</button>
+	<div class="text-right">
+		<a href="#" style="color: white">Create a new account</a>
+	</div>
+</div>
+
+<script>
+	$('.username').click(function(){
+		$('.username').css("background","transpernt")
+	})
+</script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

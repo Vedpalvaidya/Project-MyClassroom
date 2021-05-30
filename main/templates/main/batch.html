@@ -1,0 +1,162 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Batch </title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel="stylesheet" href="{% static 'css/all.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/batch.css' %}">
+	<link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+	<nav class="navbar navbar-expand-md navbar-light bg-light">
+		<div class="container-fluid">
+		  <a class="navbar-brand" href="#">My Classroom</a>
+		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		    <span class="navbar-toggler-icon"></span>
+		  </button>
+
+		  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+		    <ul class="navbar-nav mr-auto">
+		      <li>
+                <a class="nav-link" href="teacher">back to assignments</a>
+            </li>
+		    </ul>
+		    <ul class="navbar-nav navbar-right">
+		        <li><a href="/logout" class="nav-link">Log out</a></li> 
+		    </ul>       
+		  </div>
+		</div>	
+</nav>
+	<section>
+		<hr>
+		<h1>Assignments</h1>
+		{% if mesg %}
+		<br>
+		<h1>Assignment {{assn_num}} {{mesg}}</h1>
+		{% elif error_mesg %}
+		<br>
+		<h3>{{error_mesg}}</h3>
+		{% endif %}
+		<hr>
+	</section>
+<div >
+	
+</div>
+
+<div class="container" id="box">
+	<div id="about">
+		<h3><i class="fas fa-user"></i> ABOUT</h3>
+		<div class="row">
+			<div class="col-4">
+				<small><b>First Name:</b> {{user.first_name}} {{user.last_name}}</small><br>
+				<small><b>Email:</b> {{user.email}}</small><br>
+				<small><b>Division:</b> Comp A</small>
+			</div>
+			<div class="col-4">
+				<small><b>Gr no:</b> {{user.username}}</small><br>
+				<small><b>Class:</b> SY B.TECH</small><br>
+				<small><b>Batch</b>: A2</small>
+			</div>
+	    </div>
+	</div>
+<hr style="width: 98%">
+ 
+<table class="table table-bordered table-hover">
+  <thead class="table-primary">
+    <tr>
+      <th scope="col">GR.no</th>
+      <th scope="col">Name</th>
+	  <th scope="col">1</th>
+	  <th scope="col">2</th>
+      <th scope="col">3</th>
+      <th scope="col">4</th>
+      <th scope="col">5</th>
+      <th scope="col">6</th>
+      <th scope="col">7</th>
+      <th scope="col">8</th>
+    </tr>
+  </thead>
+  <tbody>
+	{% for x in assns %}
+    <tr id="assignment{{x.assn_no}}">
+      <th scope="row" name='assn'>{{x.user.username}}</th>
+      <td>{{x.user.first_name}}</td>
+      <td class="assn">
+          {% if x.assignment1 %}
+		  <a href="{{x.assignment1}}">see</a>
+		  <a href="/compilation/Teditor/{{x.user.username}}_{{x.user.first_name}}-Assignment1">run</a>
+          {% else %}
+          Not submitted
+          {% endif %}
+      </td>
+      <td class="assn">
+          {% if x.assignment2 %}
+		  <a href="{{x.assignment2}}">see</a>
+		  <a href="/compilation/Teditor/{{x.user.username}}_{{x.user.first_name}}-Assignment2">run</a>
+          {% else %}
+          Not submitted
+          {% endif %}
+	  </td> 
+	  <td class="assn">
+		{% if x.assignment3 %}
+		<a href="{{x.assignment3}}">see</a>
+		<a href="/compilation/Teditor/{{x.user.username}}_{{x.user.first_name}}-Assignment3">run</a>
+		{% else %}
+		Not submitted
+		{% endif %}
+	  </td> 
+	  <td class="assn">
+		{% if x.assignment4 %}
+		<a href="{{x.assignment4}}">see</a>
+		<a href="/compilation/Teditor/{{x.user.username}}_{{x.user.first_name}}-Assignment4">run</a>
+		{% else %}
+		Not submitted
+		{% endif %}
+	  </td>
+	  <td class="assn">
+		{% if x.assignment5 %}
+		<a href="{{x.assignment5}}">see</a>
+		<a href="/compilation/Teditor/{{x.user.username}}_{{x.user.first_name}}-Assignment5">run</a>
+		{% else %}
+		Not submitted
+		{% endif %}
+	  </td>
+	  <td class="assn">
+		{% if x.assignment6 %}
+		<a href="{{x.assignment6}}">see</a>
+		<a href="/compilation/Teditor/{{x.user.username}}_{{x.user.first_name}}-Assignment6">run</a>
+		{% else %}
+		Not submitted
+		{% endif %}
+	  </td>
+	  <td class="assn">
+		{% if x.assignment7 %}
+		<a href="{{x.assignment7}}">see</a>
+		<a href="/compilation/Teditor/{{x.user.username}}_{{x.user.first_name}}-Assignment7">run</a>
+		{% else %}
+		Not submitted
+		{% endif %}
+	  </td>
+	  <td class="assn">
+		{% if x.assignment8 %}
+		<a href="{{x.assignment8}}">see</a>
+		<a href="/compilation/Teditor/{{x.user.username}}_{{x.user.first_name}}-Assignment8">run</a>
+		{% else %}
+		Not submitted
+		{% endif %}
+	  </td>          
+	</tr>
+    {% endfor %}
+    
+  </tbody>
+</table>
+
+<hr>
+
+</div>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

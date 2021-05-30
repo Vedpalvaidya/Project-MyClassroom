@@ -1,0 +1,148 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Student Page</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel="stylesheet" href="{% static 'css/all.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/student.css' %}">
+	<link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+	<nav class="navbar navbar-expand-md navbar-light bg-light">
+		<div class="container-fluid">
+		  <a class="navbar-brand" href="#">My Classroom</a>
+		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		    <span class="navbar-toggler-icon"></span>
+		  </button>
+
+		  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+		    <ul class="navbar-nav mr-auto">
+		      <li>
+				<a class="nav-link" href="#">Home</a>
+			</li>
+			<li>
+				<a class="nav-link" href="/compilation/editor">Code</a>
+			</li>
+		    </ul>
+		    <ul class="navbar-nav navbar-right">
+		        <li><a href="/logout" class="nav-link">Log out</a></li> 
+		    </ul>       
+		  </div>
+		</div>	
+</nav>
+	<section>
+		<hr>
+		<h1>Student Profile Page</h1>
+		{% if mesg %}
+		<br>
+		<h1>Assignment {{assn_num}} {{mesg}}</h1>
+		{% elif error_mesg %}
+		<br>
+		<h3>{{error_mesg}}</h3>
+		{% endif %}
+		<hr>
+	</section>
+<div >
+	
+</div>
+
+<div class="container" id="box">
+	<div id="about">
+		<h3><i class="fas fa-user"></i> ABOUT</h3>
+		<div class="row">
+			<div class="col-4">
+				<small><b>First Name:</b> {{user.first_name}} {{user.last_name}}</small><br>
+				<small><b>Email:</b> {{user.email}}</small><br>
+				<small><b>Division:</b> Comp A</small>
+			</div>
+			<div class="col-4">
+				<small><b>Gr no:</b> {{user.username}}</small><br>
+				<small><b>Class:</b> SY B.TECH</small><br>
+				<small><b>Batch</b>: A2</small>
+			</div>
+	    </div>
+	</div>
+<hr style="width: 98%">
+<div class="dropdown">
+	<div class="row">
+		<div class="col-1.8">
+			<button class="btn btn-secondary dropdown-toggle bg-primary" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			    Subjects
+			  </button>
+			  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+			    <a class="dropdown-item" href="#">Math</a>
+			    <a class="dropdown-item" href="#">Os</a>
+			    <a class="dropdown-item" href="#">Toc</a>
+			  </div>	
+		</div>
+		<div class="col-3">
+		<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+		    <a class="dropdown-item" href="#">All</a>
+		    <a class="dropdown-item" href="#">Completed</a>
+		    <a class="dropdown-item" href="#">Incomplete</a>
+		  </div>
+		   <button class="btn btn-secondary dropdown-toggle bg-primary" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		    Assignments
+		  </button>
+		</div>
+	</div>
+</div>  
+<table class="table table-bordered table-hover">
+  <thead class="table-primary">
+    <tr>
+      <th scope="col">sr.no</th>
+      <th scope="col">Assignment</th>
+      <th scope="col">Subject</th>
+      <th scope="col">Upload</th>
+      <th scope="col">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+	{% for x in num %}
+    <tr>
+      <th scope="row" name='assn'>{{x}}</th>
+      <td>Ass{{x}}</td>
+      <td>java</td>
+	  <td><form action="upload/{{x}}" enctype="multipart/form-data" method="POST">
+		      {% csrf_token %}
+			  <input  type="file" id="myfile" name="myfile1" multiple>
+			  <input class="btn btn-sm btn-primary" type="submit">
+			</form>
+       </td>
+       <td>
+		{% for y in status %}
+		{% if y.status_1 and x == 1 %}
+		<h4>Submitted</h4>
+		{% elif y.status_2 and x == 2 %}
+		<h4>Submitted</h4>
+		{% elif y.status_3 and x == 3 %}
+		<h4>Submitted</h4>
+		{% elif y.status_4 and x == 4 %}
+		<h4>Submitted</h4>
+		{% elif y.status_5 and x == 5 %}
+		<h4>Submitted</h4>
+		{% elif y.status_6 and x == 6 %}
+		<h4>Submitted</h4>
+		{% elif y.status_7 and x == 7 %}
+		<h4>Submitted</h4>
+		{% elif y.status_8 and x == 8 %}
+		<h4>Submitted</h4>
+		{% else %}
+		<h4>Not Submitted</h4>
+		{% endif %}
+
+		{% endfor %}
+       </td>  
+	</tr>
+	{% endfor %}
+  </tbody>
+</table>
+
+<hr>
+</div>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

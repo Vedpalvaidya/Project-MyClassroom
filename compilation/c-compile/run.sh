@@ -1,0 +1,1 @@
+./compilation/c-compile/a.out < compilation/c-compile/input.txt > compilation/c-compile/output.txt
